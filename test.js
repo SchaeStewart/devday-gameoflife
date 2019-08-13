@@ -49,19 +49,34 @@ describe('Game of life', () => {
     })
 
     describe('gameOfLife', () => {
-        const game = [
-            [0, 0, 1],
-            [0, 0, 1],
-            [1, 0, 0]
-        ]
-        const gameAfterOneIteration = [ // I think
-            [0, 1, 1],
-            [1, 0, 1],
-            [0, 0, 0]
-        ]
+        
         it('Should loop through the board and call isAlive and update the board with the result for each cell', () => {
-            gameOfLife(game)
-            expect(game).to.deep.equal(gameAfterOneIteration)
+            const game = [
+                [0, 0, 1],
+                [0, 0, 1],
+                [1, 0, 0]
+            ]
+            const gameAfterOneIteration = [
+                [0, 0, 0],
+                [0, 1, 0],
+                [0, 0, 0]
+            ]
+            expect(gameOfLife(game)).to.deep.equal(gameAfterOneIteration)
+        })
+        it('board should look the same after two iterations',() => {
+            const game = [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ]
+            const gameAfterOneIterations = [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ]
+            expect(gameOfLife(game)).to.deep.equal(gameAfterOneIterations)
+            expect(gameOfLife(gameAfterOneIterations)).to.deep.equal(game) 
+ 
         })
     })
 })

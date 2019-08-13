@@ -1,5 +1,14 @@
+const lodash = require("lodash")
+
 const gameOfLife = (board) => {
-    
+    let newBoard = lodash.cloneDeep(board)
+
+    for (let y = 0; y < board.length; y++) {
+        for (let x=0; x < board[y].length; x++) {
+            newBoard[y][x] = isAlive(x,y,board)
+        }
+    }
+    return newBoard
 }
 
 const getCell = (x,y, board) => board[y] && board[y][x]
@@ -61,3 +70,12 @@ module.exports = {
     getCell,
     gameOfLife
 }
+
+
+    // for (let y = 0; y < board.length; y++) {
+    //     for (let x=0; x < board[y].length; x++) {
+    //         //board[y][x] = isAlive(x,y,board)
+    //         console.log(isAlive(x,y,board))
+    //     }
+    // }
+    // console.log(board)
